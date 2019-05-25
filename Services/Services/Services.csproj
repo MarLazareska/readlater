@@ -43,7 +43,9 @@
     <Compile Include="CategoryService.cs" />
     <Compile Include="IBookmarkService.cs" />
     <Compile Include="ICategoryService.cs" />
+    <Compile Include="IStatisticService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatisticService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Entities\Entities\Entities.csproj">

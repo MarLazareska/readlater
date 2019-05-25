@@ -44,6 +44,7 @@
     <Compile Include="Category.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="IObjectState.cs" />
+    <Compile Include="NN_Bookmark_Account.cs" />
     <Compile Include="ObjectState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

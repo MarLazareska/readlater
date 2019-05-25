@@ -39,5 +39,6 @@ namespace ReadLater.Data
         }
 
         public System.Data.Entity.DbSet<ReadLater.Entities.Category> Categories { get; set; }
+        public System.Data.Entity.DbSet<ReadLater.Entities.Bookmark> Bookmarks { get; set; }
     }
 }

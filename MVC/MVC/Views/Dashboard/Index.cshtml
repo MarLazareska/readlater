@@ -1,0 +1,111 @@
+﻿@model IEnumerable<ReadLater.Entities.Bookmark>
+@{
+    ViewBag.Title = "Stats";
+}
+
+<h2>Stats</h2>
+
+<h3>Top 5 clicked pages</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.URL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfClicks)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                @Html.ActionLink(item.URL, "OpenUrl", new { id = item.ID, url = item.URL }, new { target = "_blank" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShortDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <th>
+                @Html.DisplayFor(modelItem => item.NumberOfClicks)
+            </th>
+        </tr>
+    }
+
+</table>
+
+<div class="form-group">
+    <h3>View stats by category</h3>
+    <div class="col-md-10">
+        <select id="categoryDropDownList" name="categorySelected">
+            <option value="Select">Select</option>
+        </select>
+    </div>
+</div>
+
+<div id="bookmarksByCategory"/>
+
+@section Scripts {
+    <script>
+        $(function () {
+            AjaxCall('/Dashboard/GetCategories', null).done(function (response) {
+                if (response.length > 0) {
+                    $('#categoryDropDownList').html('');
+                    var options = '';
+                    options += '<option value="Select">Select</option>';
+                    for (var i = 0; i < response.length; i++) {
+                        options += '<option value="' + response[i].ID + '">' + response[i].Name + '</option>';
+                    }
+                    $('#categoryDropDownList').append(options);
+                }
+            }).fail(function (error) {
+                alert(error.StatusText);
+            });
+
+            $('#categoryDropDownList').on("change", function () {
+                var category = $('#categoryDropDownList').val();
+                var obj = { category: category };
+                $.ajax({
+                    url: '/Dashboard/GetBookmarksByCategory',
+                    type: "GET",
+                    data: obj,
+                    dataType: "html",
+                    success: function (result) {
+                        $("#bookmarksByCategory").html(result);
+                    },
+                    error: function (error) { alert(error.statusText); }
+                });
+
+            });
+
+        });
+
+        function AjaxCall(url, data, type) {
+            return $.ajax({
+                url: url,
+                type: type ? type : 'GET',
+                data: data,
+                contentType: 'application/json'
+            });
+        }
+    </script>
+}
+
+
+
+

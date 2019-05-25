@@ -6,12 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using ReadLater.Data;
 using ReadLater.Entities;
 using ReadLater.Services;
 
 namespace MVC.Controllers
 {
+    [Authorize]
     public class CategoriesController : Controller
     {
         ICategoryService _categoryService;
@@ -22,7 +24,7 @@ namespace MVC.Controllers
         // GET: Categories
         public ActionResult Index()
         {
-            List<Category> model = _categoryService.GetCategories();
+            List<Category> model = _categoryService.GetCategoriesByUser(User.Identity.GetUserId());
             return View(model);
         }
 
@@ -57,11 +59,15 @@ namespace MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                _categoryService.CreateCategory(category);
-                return RedirectToAction("Index");
+                if (User.Identity.IsAuthenticated)
+                {
+                    category.UserId = User.Identity.GetUserId(); ;
+                    _categoryService.CreateCategory(category);
+                }
+                else
+                    return View();
             }
-
-            return View(category);
+            return RedirectToAction("Index");
         }
 
         // GET: Categories/Edit/5
@@ -84,10 +90,11 @@ namespace MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] Category category)
+        public ActionResult Edit(Category category)
         {
             if (ModelState.IsValid)
             {
+                category.UserId = User.Identity.GetUserId();
                 _categoryService.UpdateCategory(category);
                 return RedirectToAction("Index");
             }

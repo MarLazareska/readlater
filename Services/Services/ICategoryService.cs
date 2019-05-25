@@ -11,5 +11,6 @@ namespace ReadLater.Services
         Category GetCategory(string Name);
         void UpdateCategory(Category category);
         void DeleteCategory(Category category);
+        List<Category> GetCategoriesByUser(string userId);
     }
 }

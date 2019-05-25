@@ -52,6 +52,22 @@
     <Compile Include="Migrations\201405071026235_Initial.Designer.cs">
       <DependentUpon>201405071026235_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905231928528_Create_NN_Bookmark_Account.cs" />
+    <Compile Include="Migrations\201905231928528_Create_NN_Bookmark_Account.Designer.cs">
+      <DependentUpon>201905231928528_Create_NN_Bookmark_Account.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905232015391_Add_UserId_Category.cs" />
+    <Compile Include="Migrations\201905232015391_Add_UserId_Category.Designer.cs">
+      <DependentUpon>201905232015391_Add_UserId_Category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905232120105_Add_UserId_NumberOfClicks_Bookmarks.cs" />
+    <Compile Include="Migrations\201905232120105_Add_UserId_NumberOfClicks_Bookmarks.Designer.cs">
+      <DependentUpon>201905232120105_Add_UserId_NumberOfClicks_Bookmarks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905251937433_Remove_NN_Bookmark_Account.cs" />
+    <Compile Include="Migrations\201905251937433_Remove_NN_Bookmark_Account.Designer.cs">
+      <DependentUpon>201905251937433_Remove_NN_Bookmark_Account.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadLaterDataContext.cs" />
@@ -69,6 +85,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201405071026235_Initial.resx">
       <DependentUpon>201405071026235_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905231928528_Create_NN_Bookmark_Account.resx">
+      <DependentUpon>201905231928528_Create_NN_Bookmark_Account.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905232015391_Add_UserId_Category.resx">
+      <DependentUpon>201905232015391_Add_UserId_Category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905232120105_Add_UserId_NumberOfClicks_Bookmarks.resx">
+      <DependentUpon>201905232120105_Add_UserId_NumberOfClicks_Bookmarks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905251937433_Remove_NN_Bookmark_Account.resx">
+      <DependentUpon>201905251937433_Remove_NN_Bookmark_Account.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

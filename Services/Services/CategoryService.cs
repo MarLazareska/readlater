@@ -35,6 +35,14 @@ namespace ReadLater.Services
             return _unitOfWork.Repository<Category>().Query().Get().ToList();
         }
 
+        public List<Category> GetCategoriesByUser(string userId)
+        {
+            return _unitOfWork.Repository<Category>().Query()
+                                                     .Filter(c => c.UserId == userId)
+                                                     .Get()
+                                                     .ToList();
+        }
+
         public Category GetCategory(int Id)
         {
             return _unitOfWork.Repository<Category>().Query()
